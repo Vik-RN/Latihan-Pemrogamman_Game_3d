@@ -11,14 +11,14 @@ public class SistemTabrakan : MonoBehaviour
 
     void Start()
     {
-        
+        ScoreUi.text = "Score : " + score.ToString();
+        TimeUi.text = "Waktu Bermain: 0";
     }
 
     void Update()
     {
-        timer = ((int)Time.time);
-        TimeUi.text = score.ToString();
-
+        timer = (int)Time.time;
+        TimeUi.text = "Waktu Bermain: " + timer.ToString();
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -31,8 +31,8 @@ public class SistemTabrakan : MonoBehaviour
         if(other.gameObject.tag=="Item")
         {
             score +=1;
-            ScoreUi.text = score.ToString();
-            Destroy(this);
+            ScoreUi.text = "Score: " + score.ToString();
+            Destroy(other.gameObject);
         }
     }
 
