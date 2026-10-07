@@ -7,6 +7,7 @@ public class SistemTabrakan : MonoBehaviour
     public int timer;
     public TMP_Text ScoreUi;
     public TMP_Text TimeUi;
+    public SpawnerCoin spawnerCoin;
 
 
     void Start()
@@ -19,10 +20,12 @@ public class SistemTabrakan : MonoBehaviour
     {
         timer = (int)Time.time;
         TimeUi.text = "Waktu Bermain: " + timer.ToString();
+        spawnerCoin = FindAnyObjectByType<SpawnerCoin>();
     }
 
     private void OnTriggerEnter(Collider other) 
     {
+
         if(other.gameObject.tag=="Enemy")
         {
             Debug.Log("Kamu masuk collision musuh");
@@ -33,6 +36,8 @@ public class SistemTabrakan : MonoBehaviour
             score +=1;
             ScoreUi.text = "Score: " + score.ToString();
             Destroy(other.gameObject);
+            spawnerCoin.coinList -= 1f;
+
         }
     }
 
